@@ -4,6 +4,10 @@ const categoriesRoutes = Router();
 
 const categories = [];
 
+categoriesRoutes.get("/categories", (request, response) => {
+  return response.status(200).json(categories);
+});
+
 categoriesRoutes.post("/categories", (request, response) => {
   const { name, description } = request.body;
 
@@ -12,7 +16,7 @@ categoriesRoutes.post("/categories", (request, response) => {
     description,
   });
 
-  return response.status(201);
+  return response.status(201).send();
 });
 
 export { categoriesRoutes };
