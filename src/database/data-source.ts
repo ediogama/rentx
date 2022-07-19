@@ -1,12 +1,12 @@
 import { DataSource } from "typeorm";
 
-import { Category } from "../modules/cars/model/Category";
-import { Specification } from "../modules/cars/model/Specification";
+import { Category } from "../modules/cars/entities/Category";
+import { Specification } from "../modules/cars/entities/Specification";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
-  port: 5432,
+  port: 5431,
   username: "databasePG",
   password: "testdatabase",
   database: "postgres",
@@ -14,7 +14,7 @@ export const PostgresDataSource = new DataSource({
   logging: true,
   entities: [Specification, Category],
   subscribers: [],
-  migrations: [],
+  migrations: ["./src/database/migrations/*.ts"],
 });
 
 PostgresDataSource.initialize()
