@@ -5,7 +5,7 @@ import { Specification } from "../modules/cars/entities/Specification";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
-  host: "172.22.0.1",
+  host: "172.23.0.1",
   port: 5431,
   username: "databasePG",
   password: "testdatabase",
