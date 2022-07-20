@@ -23,10 +23,6 @@ services:
       - 9229:9229
     volumes:
       - .:/usr/app
-    links:
-      - database
-    depends_on:
-      - database
 
 volumes:
   pgdata:
