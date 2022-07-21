@@ -10,8 +10,6 @@ import {
 class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
   constructor() {
     this.repository = PostgresDataSource.getRepository(Category);
   }
