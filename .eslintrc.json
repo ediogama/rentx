@@ -22,7 +22,12 @@
   ],
   "rules": {
     "camelcase": "off",
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120
+      }
+    ],
     "@typescript-eslint/naming-convention": [
       "error",
       {
