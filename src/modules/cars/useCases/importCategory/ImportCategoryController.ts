@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { ImporteCategoryUseCase } from "./ImportCategoryUseCase";
 
 class ImportCategoryController {
-  constructor(private importCategoryUseCase: ImporteCategoryUseCase) {}
-
   handle(request: Request, response: Response): Response {
     const { file } = request;
 
-    this.importCategoryUseCase.execute(file);
+    const importCategoryUseCase = container.resolve(ImporteCategoryUseCase);
+
+    importCategoryUseCase.execute(file);
 
     return response.send();
   }
