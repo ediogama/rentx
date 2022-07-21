@@ -12,7 +12,6 @@ export const PostgresDataSource = new DataSource({
   password: "testdatabase",
   database: "postgres",
   entities: [Specification, Category, User],
-  subscribers: [],
   migrations: ["./src/database/migrations/*.ts"],
 });
 
