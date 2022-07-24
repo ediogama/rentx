@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
 
-import { PostgresDataSource } from "@database/data-source";
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
-import { User } from "@modules/accounts/entities/User";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { PostgresDataSource } from "@shared/infra/typeorm/data-source";
 
-import { IUsersRepository } from "../IUsersRepository";
+import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
   private usersRepository: Repository<User>;
