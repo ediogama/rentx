@@ -1,11 +1,9 @@
 import { Repository } from "typeorm";
 
-import { PostgresDataSource } from "../../../../database/data-source";
-import { Specification } from "../../entities/Specification";
-import {
-  ICreateSpecificationDTO,
-  ISpecificationsRepository,
-} from "../ISpecificationsRepository";
+import { PostgresDataSource } from "@database/data-source";
+import { Specification } from "@modules/cars/entities/Specification";
+
+import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationsRepository";
 
 class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Repository<Specification>;
