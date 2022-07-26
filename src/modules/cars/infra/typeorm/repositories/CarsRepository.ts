@@ -12,6 +12,7 @@ class CarsRepository implements ICarsRepository {
   constructor() {
     this.repository = PostgresDataSource.getRepository(Car);
   }
+
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = await this.repository.findOneBy({ license_plate });
 
@@ -39,6 +40,26 @@ class CarsRepository implements ICarsRepository {
     await this.repository.save(car);
 
     return car;
+  }
+
+  async findAllAvailable(name?: string, category_id?: string, brand?: string): Promise<Car[]> {
+    const carsQuery = this.repository.createQueryBuilder("car").where("available = :available", { available: true });
+
+    if (brand) {
+      carsQuery.andWhere("car.brand = :brand", { brand });
+    }
+
+    if (name) {
+      carsQuery.andWhere("car.name = :name", { name });
+    }
+
+    if (category_id) {
+      carsQuery.andWhere("car.category_id = :category_id", { category_id });
+    }
+
+    const cars = await carsQuery.getMany();
+
+    return cars;
   }
 }
 
