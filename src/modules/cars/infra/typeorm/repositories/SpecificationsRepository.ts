@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import { PostgresDataSource } from "@shared/infra/typeorm/data-source";
@@ -11,6 +11,13 @@ class SpecificationsRepository implements ISpecificationsRepository {
   constructor() {
     this.specifications = PostgresDataSource.getRepository(Specification);
   }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.specifications.findBy({ id: In(ids) });
+
+    return specifications;
+  }
+
   async findByName(specificationName: string): Promise<Specification> {
     const specification = await this.specifications.findOneBy({
       name: specificationName,
@@ -25,13 +32,15 @@ class SpecificationsRepository implements ISpecificationsRepository {
     return specifications;
   }
 
-  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+  async create({ name, description }: ICreateSpecificationDTO): Promise<Specification> {
     const specification = this.specifications.create({
       name,
       description,
     });
 
     await this.specifications.save(specification);
+
+    return specification;
   }
 }
 
