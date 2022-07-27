@@ -13,6 +13,8 @@ class SpecificationsRepositoryInMemory implements ISpecificationsRepository {
       name,
     });
 
+    this.specifications.push(specification);
+
     return specification;
   }
   async findByName(specificationName: string): Promise<Specification> {
