@@ -5,6 +5,7 @@ import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { CarImage } from "@modules/cars/infra/typeorm/entities/CarImage";
 import { Category } from "@modules/cars/infra/typeorm/entities/Category";
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
@@ -13,7 +14,7 @@ export const PostgresDataSource = new DataSource({
   username: "databasePG",
   password: "testdatabase",
   database: "postgres",
-  entities: [Specification, Category, User, Car, CarImage],
+  entities: [Specification, Category, User, Car, CarImage, Rental],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
 
