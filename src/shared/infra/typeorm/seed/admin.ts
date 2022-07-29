@@ -23,3 +23,5 @@ async function createUserAdmin() {
 createUserAdmin()
   .then(() => console.log("User Admin Created!"))
   .catch((error) => console.log(error));
+
+export { createUserAdmin };

@@ -13,7 +13,7 @@ export const PostgresDataSource = new DataSource({
   port: 5431,
   username: "databasePG",
   password: "testdatabase",
-  database: "postgres",
+  database: process.env.NODE_ENV === "test" ? "rentx_test" : "postgres",
   entities: [Specification, Category, User, Car, CarImage, Rental],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });
