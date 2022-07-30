@@ -4,7 +4,7 @@ import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/Car
 import { DayJsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayJsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
-import { RentalsRepositoryInMemory } from "../infra/typeorm/repositories/in-memory/RentalsRepositoryInMemory";
+import { RentalsRepositoryInMemory } from "../../infra/typeorm/repositories/in-memory/RentalsRepositoryInMemory";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 
 let createRentalUseCase: CreateRentalUseCase;
