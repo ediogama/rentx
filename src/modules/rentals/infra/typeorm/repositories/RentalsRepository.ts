@@ -13,11 +13,14 @@ class RentalsRepository implements IRentalsRepository {
     this.repository = PostgresDataSource.getRepository(Rental);
   }
 
-  async create({ car_id, expected_return_date, user_id }: ICreateRentalDTO): Promise<Rental> {
+  async create({ car_id, expected_return_date, user_id, end_date, id, total }: ICreateRentalDTO): Promise<Rental> {
     const rental = this.repository.create({
       car_id,
       expected_return_date,
       user_id,
+      id,
+      end_date,
+      total,
     });
 
     await this.repository.save(rental);
@@ -28,10 +31,10 @@ class RentalsRepository implements IRentalsRepository {
     return this.repository.findOneBy({ id });
   }
   findOpenRentalByUser(user_id: string): Promise<Rental> {
-    return this.repository.findOneBy({ user_id });
+    return this.repository.findOne({ where: { user_id, end_date: null } });
   }
   findOpenRentalByCar(car_id: string): Promise<Rental> {
-    return this.repository.findOneBy({ car_id });
+    return this.repository.findOne({ where: { car_id, end_date: null } });
   }
 }
 
