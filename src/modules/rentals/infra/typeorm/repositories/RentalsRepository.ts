@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
 
+import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
 import { PostgresDataSource } from "@shared/infra/typeorm/data-source";
 
-import { ICreateRentalDTO } from "../dtos/ICreateRentalDTO";
-import { Rental } from "../infra/typeorm/entities/Rental";
-import { IRentalsRepository } from "./IRentalsRepository";
+import { Rental } from "../entities/Rental";
 
 class RentalsRepository implements IRentalsRepository {
   private repository: Repository<Rental>;
@@ -24,11 +24,13 @@ class RentalsRepository implements IRentalsRepository {
 
     return rental;
   }
-  async findOpenRentalByUser(user_id: string): Promise<Rental> {
+  findById(id: string): Promise<Rental> {
+    return this.repository.findOneBy({ id });
+  }
+  findOpenRentalByUser(user_id: string): Promise<Rental> {
     return this.repository.findOneBy({ user_id });
   }
-
-  async findOpenRentalByCar(car_id: string): Promise<Rental> {
+  findOpenRentalByCar(car_id: string): Promise<Rental> {
     return this.repository.findOneBy({ car_id });
   }
 }
