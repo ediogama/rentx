@@ -20,7 +20,9 @@ export const PostgresDataSource = new DataSource({
 
 PostgresDataSource.initialize()
   .then(() => {
-    console.log("Data Source has been initialized!");
+    if (process.env.NODE_ENV !== "test") {
+      console.log("Data Source has been initialized!");
+    }
   })
   .catch((error) => {
     console.error("Error during Data Source initialization", error);
