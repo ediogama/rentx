@@ -35,8 +35,6 @@ class SendForgotPasswordMailUseCase {
 
     await this.usersTokensRepository.create({ expires_date, refresh_token: token, user_id: user.id });
 
-    console.log(process.env.FORGOT_MAIL_URL);
-
     const variables = {
       name: user.name,
       link: `${process.env.FORGOT_MAIL_URL}${token}`,
