@@ -1,6 +1,7 @@
 node_modules
 coverage
 tmp
+.idea
 .vscode
 .yarn/
 .yarn*
