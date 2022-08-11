@@ -1,4 +1,4 @@
-import { S3 } from "aws-sdk";
+import { S3, Credentials } from "aws-sdk";
 import fs from "fs";
 import mime from "mime";
 import { resolve } from "path";
@@ -9,10 +9,17 @@ import { IStorageProvider } from "../IStorageProvider";
 
 class S3StorageProvider implements IStorageProvider {
   private client: S3;
+  private credentials: Credentials;
 
   constructor() {
+    this.credentials = new Credentials({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    });
+
     this.client = new S3({
       region: process.env.AWS_BUCKET_REGION,
+      credentials: this.credentials,
     });
   }
 
