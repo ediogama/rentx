@@ -41,7 +41,6 @@ class S3StorageProvider implements IStorageProvider {
       .promise();
 
     await fs.promises.unlink(originalName);
-    console.log(process.env.AWS_BUCKET);
     return file;
   }
   async delete(file: string, folder: string): Promise<void> {
