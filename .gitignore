@@ -1,7 +1,5 @@
 node_modules
-coverage
-tmp
-.idea
+tmp/
 .vscode
-.yarn/
-.yarn*
+coverage
+.env
