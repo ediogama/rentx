@@ -10,7 +10,7 @@ import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
-  host: "172.22.0.1",
+  host: "172.25.0.1",
   port: 5431,
   username: "databasePG",
   password: "testdatabase",
