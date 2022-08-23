@@ -16,7 +16,7 @@ export const PostgresDataSource = new DataSource({
   password: "testdatabase",
   database: process.env.NODE_ENV === "test" ? "rentx_test" : "postgres",
   entities: [Specification, Category, User, Car, CarImage, Rental, UsersTokens],
-  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
+  migrations: ["./dist/shared/infra/typeorm/migrations/*.js"],
 });
 
 PostgresDataSource.initialize()
