@@ -5,8 +5,8 @@ import { createClient } from "redis";
 import { AppError } from "@shared/errors/AppError";
 
 const redisClient = createClient({
-  socket: { port: Number(process.env.REDIS_PORT), host: process.env.REDIS_HOST },
-  disableOfflineQueue: true,
+  host: process.env.REDIS_HOST,
+  port: Number(process.env.REDIS_PORT),
 });
 
 redisClient.on("error", (err) => console.log("Redis Client Error", err));
@@ -20,7 +20,6 @@ const limiter = new RateLimiterRedis({
 
 export default async function rateLimiter(request: Request, response: Response, next: NextFunction): Promise<void> {
   try {
-    await redisClient.connect();
     await limiter.consume(request.ip);
 
     return next();
